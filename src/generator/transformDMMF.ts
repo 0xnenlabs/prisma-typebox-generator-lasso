@@ -57,7 +57,9 @@ export function createTransformer(generatorName: string) {
     const optionsStr = options.length ? `{ ${options.join(', ')} }` : '';
 
     let typeStr;
-    if (['Int', 'Float', 'Decimal'].includes(field.type)) {
+    if (['DateTime', 'Date'].includes(field.type)) {
+      typeStr = 'DateString';
+    } else if (['Int', 'Float', 'Decimal'].includes(field.type)) {
       typeStr = `Type.${overrideType || 'Number'}(${optionsStr})`;
     } else if (['BigInt'].includes(field.type)) {
       typeStr = `Type.${overrideType || 'Integer'}(${optionsStr})`;
@@ -174,7 +176,7 @@ export function createTransformer(generatorName: string) {
 
   function transformDMMF(dmmf: DMMF.Document) {
     const { models, enums } = dmmf.datamodel;
-    const mainImport = 'import {Type, Static} from "@sinclair/typebox"';
+    const mainImport = 'import {Type, Static, TSchema} from "@sinclair/typebox"';
 
     return [
       ...models.map((model) => {
@@ -199,6 +201,17 @@ export function createTransformer(generatorName: string) {
             importStatements.add(`import { ${enm.name} } from './${enm.name}'`);
           }
         });
+
+        importStatements.add(`
+        const TransformDateToString = Type.Transform(Type.Date({ format: "date-time" }))
+        .Decode((value) => value.toISOString())
+        .Encode((value) => new Date(value));
+      
+      const DateAsStringConverter = <T extends TSchema>(schema: T) =>
+        Type.Unsafe<Date>({ ...schema, type: "string" });
+      
+      const DateString = DateAsStringConverter(TransformDateToString);
+        `);
 
         return {
           name: model.name,

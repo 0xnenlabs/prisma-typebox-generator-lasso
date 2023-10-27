@@ -1,5 +1,5 @@
 {
-  "name": "prisma-typebox-generator",
+  "name": "@lassogg/prisma-typebox-generator",
   "version": "2.1.0",
   "main": "dist/index.js",
   "license": "MIT",

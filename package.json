@@ -22,7 +22,7 @@
   ],
   "homepage": "https://github.com/adeyahya/prisma-typebox-generator",
   "repository": {
-    "url": "https://github.com/adeyahya/prisma-typebox-generator.git"
+    "url": "git+https://github.com/adeyahya/prisma-typebox-generator.git"
   },
   "bugs": {
     "email": "adeyahyaprasetyo@gmail.com",

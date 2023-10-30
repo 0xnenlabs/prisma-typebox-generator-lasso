@@ -63,7 +63,7 @@ export function createTransformer(generatorName: string) {
       typeStr = `Type.${overrideType || 'Number'}(${optionsStr})`;
     } else if (['BigInt'].includes(field.type)) {
       typeStr = `Type.${overrideType || 'Integer'}(${optionsStr})`;
-    } else if (['String', 'DateTime', 'Json', 'Date'].includes(field.type)) {
+    } else if (['String', 'Json', 'Date'].includes(field.type)) {
       typeStr = `Type.${overrideType || 'String'}(${optionsStr})`;
     } else if (field.type === 'Boolean') {
       typeStr = `Type.${overrideType || 'Boolean'}(${optionsStr})`;
@@ -85,14 +85,14 @@ export function createTransformer(generatorName: string) {
 
     // @id cannot be optional except for input if it's auto increment
     if (field.isId && (field?.default as any)?.name === 'autoincrement') {
-      inputTokens.splice(1, 0, 'Type.Optional(');
+      inputTokens.splice(1, 0, 'Type.Union([Type.Null(), ');
       inputTokens.splice(inputTokens.length, 0, ')');
     }
 
     if ((!field.isRequired || field.hasDefaultValue) && !field.isId) {
-      tokens.splice(1, 0, 'Type.Optional(');
+      tokens.splice(1, 0, 'Type.Union([Type.Null(), ');
       tokens.splice(tokens.length, 0, ')');
-      inputTokens.splice(1, 0, 'Type.Optional(');
+      inputTokens.splice(1, 0, 'Type.Union([Type.Null(), ');
       inputTokens.splice(inputTokens.length, 0, ')');
     }
 

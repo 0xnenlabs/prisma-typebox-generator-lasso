@@ -1,20 +1,21 @@
-import { Type, Static } from "@sinclair/typebox";
+import { Type, Static, TSchema } from "@sinclair/typebox";
 import { Role } from "./Role";
+import { DateString } from "./dateString";
 
 export const User = Type.Object(
   {
     id: Type.Number(),
-    createdAt: Type.Optional(Type.String()),
+    createdAt: Type.Union([Type.Null(), DateString]),
     email: Type.String(),
-    weight: Type.Optional(Type.Number()),
-    is18: Type.Optional(Type.Boolean()),
-    name: Type.Optional(Type.String()),
-    successorId: Type.Optional(Type.Number()),
-    role: Type.Optional(Role),
+    weight: Type.Union([Type.Null(), Type.Number()]),
+    is18: Type.Union([Type.Null(), Type.Boolean()]),
+    name: Type.Union([Type.Null(), Type.String()]),
+    successorId: Type.Union([Type.Null(), Type.Number()]),
+    role: Type.Union([Type.Null(), Role]),
     posts: Type.Array(
       Type.Object({
         id: Type.Number(),
-        userId: Type.Optional(Type.Number()),
+        userId: Type.Union([Type.Null(), Type.Number()]),
       })
     ),
     keywords: Type.Array(Type.String({ minLength: 3 }), { maxItems: 10 }),

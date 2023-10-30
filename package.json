@@ -1,6 +1,6 @@
 {
   "name": "@lassogg/prisma-typebox-generator",
-  "version": "2.1.1",
+  "version": "2.1.6",
   "main": "dist/index.js",
   "license": "MIT",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "description": "Typebox generator for prisma schema",
   "author": {
-    "name": "Sami Prasetyo@gmail.com",
+    "name": "Lasso",
     "email": "sami@lasso.gg"
   },
   "keywords": [
@@ -46,7 +46,7 @@
     "@semantic-release/github": "^7.2.0",
     "@semantic-release/npm": "^7.1.0",
     "@semantic-release/release-notes-generator": "^9.0.2",
-    "@sinclair/typebox": "^0.16.7",
+    "@sinclair/typebox": "^0.31.18",
     "@types/jest": "26.0.22",
     "@types/node": "^14.14.37",
     "ajv": "^8.0.5",

@@ -202,16 +202,7 @@ export function createTransformer(generatorName: string) {
           }
         });
 
-        importStatements.add(`
-        const TransformDateToString = Type.Transform(Type.Date({ format: "date-time" }))
-        .Decode((value) => value.toISOString())
-        .Encode((value) => new Date(value));
-      
-      const DateAsStringConverter = <T extends TSchema>(schema: T) =>
-        Type.Unsafe<Date>({ ...schema, type: "string" });
-      
-      const DateString = DateAsStringConverter(TransformDateToString);
-        `);
+        importStatements.add(`import { DateString } from './dateString';`);
 
         return {
           name: model.name,

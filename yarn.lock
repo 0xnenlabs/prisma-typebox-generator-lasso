@@ -1586,10 +1586,10 @@
     lodash "^4.17.4"
     read-pkg-up "^7.0.0"
 
-"@sinclair/typebox@^0.16.7":
-  version "0.16.7"
-  resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.16.7.tgz"
-  integrity sha512-d12AkLZJXD30hXBhJSgf33RqGO0NMHIDzsQPYfp6WGoaSuMnSGIUanII2OUbeZFnD/j3Nbl2zifgO2+5tPClCQ==
+"@sinclair/typebox@^0.31.18":
+  version "0.31.20"
+  resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.31.20.tgz"
+  integrity sha512-pqkf2X6fc1yk6c3Rk41cT8NYFKmzngl8TVHy375X7ihlONCsX7/YTReRLyZX7zZhuUUBx9KTZPFFDZo6AIERCw==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
